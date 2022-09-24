@@ -1,0 +1,11 @@
+.profile-info__conteiner {
+  display: grid;
+  grid-template-columns: min-content 34px;
+  align-items: baseline;
+}
+
+@media screen and (min-width: 750px) {
+  .profile-info__conteiner {
+    grid-template-columns: min-content 42px;
+  }
+}

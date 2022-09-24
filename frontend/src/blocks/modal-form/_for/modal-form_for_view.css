@@ -1,0 +1,7 @@
+.modal-form_for_view {
+  position: relative;
+  background-color: rgba(0, 0, 0, 0);
+  border-radius: 0;
+  padding: 0;
+  height: min-content;
+}

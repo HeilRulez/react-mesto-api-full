@@ -1,0 +1,25 @@
+.profile-info__btn {
+  background-image: url(../../../images/edit.svg);
+  background-repeat: no-repeat;
+  background-position: center;
+  background-color: rgba(0, 0, 0, 0);
+  width: 18px;
+  height: 18px;
+  border: 1px solid white;
+  padding: auto 0;
+  cursor: pointer;
+  transition: opacity .3s ease-in-out;
+  justify-self: center;
+}
+
+.profile-info__btn:hover {
+  opacity: .6;
+}
+
+@media screen and (min-width: 425px) {
+  .profile-info__btn {
+    width: 24px;
+    height: 24px;
+    justify-self: end;
+  }
+}

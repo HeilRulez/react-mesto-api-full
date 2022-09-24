@@ -1,0 +1,22 @@
+.form__name {
+  border: none;
+  border-bottom: 1px solid rgba(0, 0, 0, .2);
+  margin: 74px 0 4px;
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 17px;
+  color: #000;
+  padding-bottom: 8px;
+}
+
+.form__name::placeholder {
+  color: #C4C4C4;
+}
+
+@media screen and (min-width: 560px) {
+  .form__name {
+    margin: 48px 0 4px;
+  }
+}

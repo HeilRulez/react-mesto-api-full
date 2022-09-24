@@ -1,0 +1,23 @@
+.header__btn {
+  background-color: rgba(0, 0, 0, 0);
+  border: none;
+  color: #A9A9A9;
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 18px;
+  line-height: 22px;
+  text-align: right;
+  padding: 0 24px;
+  transition: opacity .3s ease-in-out;
+}
+
+@media screen and (min-width: 900px) {
+  .header__btn {
+    padding: 0 0 0 24px;
+  }
+}
+
+.header__btn:hover {
+  opacity: .6;
+}

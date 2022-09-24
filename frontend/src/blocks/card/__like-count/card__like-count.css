@@ -1,0 +1,13 @@
+.card__like-count {
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 13px;
+  line-height: 16px;
+  text-align: center;
+  max-width: 100%;
+  min-height: 16px;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+}

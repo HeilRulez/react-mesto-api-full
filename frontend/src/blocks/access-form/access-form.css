@@ -1,0 +1,11 @@
+.access-form {
+  padding: 0;
+  margin: 0 auto;
+  max-width: 358px;
+}
+
+@media screen and (max-width: 425px) {
+  .access-form {
+    padding: 0 30px;
+  }
+}

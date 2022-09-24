@@ -1,0 +1,19 @@
+.modal-form {
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  min-width: 230px;
+  height: fit-content;
+  background-color: white;
+  border-radius: 10px;
+  margin: 0 19px 0;
+  padding: 26px;
+}
+
+@media screen and (min-width: 560px) {
+  .modal-form {
+    padding: 36px;
+    min-width: 355px;
+    margin: 0;
+  }
+}

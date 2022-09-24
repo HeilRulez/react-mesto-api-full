@@ -1,0 +1,25 @@
+.header {
+  min-height: 56px;
+  max-width: 880px;
+  margin: 0 auto;
+  padding: 28px 0 0 27px;
+  border-bottom: 1px solid rgba(84, 84, 84, .7);
+  display: grid;
+  grid-template-columns: 103px minmax(24px, 152px);
+  align-items: flex-start;
+  justify-content: space-between;
+
+}
+
+@media screen and (min-width: 540px) {
+  .header {
+    grid-template-columns: 1fr minmax(min-content, max-content) minmax(min-content, max-content);
+  }
+}
+
+@media screen and (min-width: 900px) {
+  .header {
+    height: 74px;
+    padding: 45px 0 0;
+  }
+}
