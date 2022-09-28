@@ -35,10 +35,11 @@ export default function App() {
   function onLogin(email, password) {
     return api.access(email, password, '/signin')
       .then(res => {
-        if(res.token) {
-          localStorage.setItem('jwt', res.token);
-          checkToken();
+        if(res.data._id) {
           setLoggedIn(true);
+          setDataUser(res.data);
+          getCards();
+          getInfo();
         }
       })
       .then(() => history.push('/'))
@@ -56,7 +57,7 @@ export default function App() {
       if(res) {
         setInfoMessage('Вы успешно\n зарегистрировались!');
         setInfoState(true);
-        history.push('/sign-in');
+        history.push('/signin');
       }
     })
     .catch((err) => {
@@ -80,34 +81,18 @@ export default function App() {
   function getInfo() {
     api.getUserInfo()
     .then((dataUser) => {
+      setLoggedIn(true);
       setCurrentUser(dataUser)
       })
       .catch(err => console.error(`Ошибка ${err} при получении данных профиля.`));
   }
 
-  function checkToken() {
-    api.getCheckToken()
-    .then(res => {
-      if(res.data._id) {
-        setLoggedIn(true);
-        setDataUser(res.data);
-        getCards();
-        getInfo();
-      }
-    })
-    .catch(err => console.error(`Ошибка ${err} при проверке токена.`))
-  }
-
-  useEffect(() => {
-    const jwt = localStorage.getItem('jwt');
-    if(jwt) {
-      checkToken();
-    }
-  }, []);
-
   useEffect(() => {
     if(loggedIn) {
       history.push('/');
+      getCards();
+    } else {
+      getInfo();
     }
   }, [loggedIn]);
 
@@ -198,10 +183,10 @@ export default function App() {
       <div className="page">
         <Header loggedIn={loggedIn} setLoggedIn={setLoggedIn} />
           <Switch>
-            <Route path='/sign-in'>
+            <Route path='/signin'>
               <Login onLogin={onLogin} />
             </Route>
-            <Route path='/sign-up'>
+            <Route path='/signup'>
               <Register onRegister={onRegister} />
             </Route>
 

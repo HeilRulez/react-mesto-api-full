@@ -2,12 +2,12 @@ const BadRequestError = require('../errors/BadRequestError');
 const ForbiddenError = require('../errors/ForbiddenError');
 const NotFoundError = require('../errors/NotFoundError');
 const Card = require('../models/card');
-const { OK, OK_ADD } = require('../constants/constants');
+const { resStatus } = require('../constants/constants');
 
 module.exports.getCards = async (req, res, next) => {
   try {
     const cards = await Card.find({});
-    res.status(OK).send(cards);
+    res.status(resStatus.OK).send(cards);
   } catch (err) {
     next(err);
   }
@@ -17,7 +17,7 @@ module.exports.createCard = async (req, res, next) => {
   const { name, link } = req.body;
   try {
     const card = await Card.create({ name, link, owner: req.user._id });
-    res.status(OK_ADD).send(card);
+    res.status(resStatus.OK_ADD).send(card);
   } catch (err) {
     if (err.name === 'ValidationError') {
       next(new BadRequestError('Неверные данные запроса.'));
@@ -36,7 +36,7 @@ module.exports.delTargetCard = async (req, res, next) => {
     if (card.owner.toString() !== req.user._id) {
       throw new ForbiddenError('Нет прав.');
     }
-    res.status(OK).send(card);
+    res.status(resStatus.OK).send(card);
   } catch (err) {
     if (err.name === 'CastError') {
       next(new BadRequestError('Неверные данные запроса.'));
@@ -56,7 +56,7 @@ module.exports.likeCard = async (req, res, next) => {
     if (!card) {
       throw new NotFoundError('Какточка отсутствут.');
     }
-    res.status(OK).send(card);
+    res.status(resStatus.OK).send(card);
   } catch (err) {
     if (err.name === 'CastError') {
       next(new BadRequestError('Неверные данные запроса.'));
@@ -76,7 +76,7 @@ module.exports.dislikeCard = async (req, res, next) => {
     if (!card) {
       throw new NotFoundError('Какточка отсутствут.');
     }
-    res.status(OK).send(card);
+    res.status(resStatus.OK).send(card);
   } catch (err) {
     if (err.name === 'CastError') {
       next(new BadRequestError('Неверные данные запроса.'));

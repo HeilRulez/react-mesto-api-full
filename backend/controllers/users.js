@@ -6,12 +6,12 @@ const BadRequestError = require('../errors/BadRequestError');
 const UnauthorizedError = require('../errors/UnauthorizedError');
 const ConflictError = require('../errors/ConflictError');
 const User = require('../models/user');
-const { OK, OK_ADD } = require('../constants/constants');
+const { resStatus } = require('../constants/constants');
 
 module.exports.getUsers = async (req, res, next) => {
   try {
     const users = await User.find({});
-    res.status(OK).send(users);
+    res.status(resStatus.OK).send(users);
   } catch (err) {
     next(err);
   }
@@ -20,7 +20,7 @@ module.exports.getUsers = async (req, res, next) => {
 module.exports.getUser = async (req, res, next) => {
   try {
     const user = await User.findById(req.user);
-    res.status(OK).send(user);
+    res.status(resStatus.OK).send(user);
   } catch (err) {
     next(err);
   }
@@ -32,7 +32,7 @@ module.exports.getTargetUser = async (req, res, next) => {
     if (!user) {
       throw new NotFoundError('Пользователь не найден.');
     } else {
-      res.status(OK).send(user);
+      res.status(resStatus.OK).send(user);
     }
   } catch (err) {
     if (err.kind === 'ObjectId') {
@@ -52,7 +52,7 @@ module.exports.createUser = async (req, res, next) => {
     const user = await User.create({
       name, about, avatar, email, password: pasHash,
     });
-    res.status(OK_ADD).send(user.toJSON());
+    res.status(resStatus.OK_ADD).send(user.toJSON());
   } catch (err) {
     if (err.name === 'ValidationError') {
       next(new BadRequestError('Неверные данные запроса.'));
@@ -73,7 +73,7 @@ module.exports.updateProfile = async (req, res, next) => {
       req.body,
       { new: true, runValidators: true },
     );
-    res.status(OK).send(user);
+    res.status(resStatus.OK).send(user);
   } catch (err) {
     if (err.name === 'ValidationError') {
       next(new BadRequestError('Неверные данные запроса.'));
@@ -90,7 +90,7 @@ module.exports.updateAvatar = async (req, res, next) => {
       req.body,
       { new: true, runValidators: true },
     );
-    res.status(OK).send(user);
+    res.status(resStatus.OK).send(user);
   } catch (err) {
     if (err.name === 'ValidationError') {
       next(new BadRequestError('Неверные данные запроса.'));
@@ -117,7 +117,7 @@ module.exports.login = async (req, res, next) => {
           '671a191f3ef9128b01d4f624f9b51519941c7c2daa2790e71bd3956e74ca410f',
           { expiresIn: '7d' },
         );
-        res.status(OK).cookie('jwt', token, {
+        res.status(resStatus.OK).cookie('jwt', token, {
           maxAge: 3600000 * 24 * 7,
           httpOnly: true,
         })

@@ -22,7 +22,7 @@ routes.patch('/me/avatar', celebrate({
   body: Joi.object().keys({
     avatar: Joi
       .string()
-      .regex(regExp),
+      .regex(regExp.link),
   }),
 }), updateAvatar);
 

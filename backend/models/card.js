@@ -15,7 +15,7 @@ const cardSchema = new mongoose.Schema({
     required: [true, 'Не должно быть пустым'],
     validate: {
       validator(v) {
-        return regExp.test(v);
+        return regExp.link.test(v);
       },
     },
   },

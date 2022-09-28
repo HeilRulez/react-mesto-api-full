@@ -1,12 +1,9 @@
 import * as cs from './constants.js';
 
 class Api {
-  constructor({baseUrl, authUrl, token, type, cohort}) {
+  constructor({baseUrl, type}) {
     this._baseUrl = baseUrl;
-    this._authUrl = authUrl;
-    this._token = token;
     this._type = type;
-    this._cohort = cohort;
   }
 
   _checkResponse(res) {
@@ -18,41 +15,35 @@ class Api {
   }
 
   renderAllCards() {
-    return fetch(`${this._baseUrl}${this._cohort}/cards`, {
-        headers: {
-          authorization: this._token
-        }
+    return fetch(`${this._baseUrl}/cards`, {
+        credentials: 'include'
       })
       .then(res => this._checkResponse(res))
   }
 
   getUserInfo() {
-    return fetch(`${this._baseUrl}${this._cohort}/users/me`, {
-        headers: {
-          authorization: this._token
-        }
+    return fetch(`${this._baseUrl}/users/me`, {
+      credentials: 'include'
       })
       .then(res => this._checkResponse(res))
   }
 
   reqDelCard(idCard) {
-    return fetch(`${this._baseUrl}${this._cohort}/cards/${idCard}`, {
+    return fetch(`${this._baseUrl}/cards/${idCard}`, {
         method: 'DELETE',
-        headers: {
-          authorization: this._token
-        }
+        credentials: 'include'
       })
       .then(res => this._checkResponse(res))
   }
 
   getAllCards({name, link
   }) {
-    return fetch(`${this._baseUrl}${this._cohort}/cards`, {
+    return fetch(`${this._baseUrl}/cards`, {
         method: 'POST',
         headers: {
-          authorization: this._token,
           'Content-Type': this._type
         },
+        credentials: 'include',
         body: JSON.stringify({
           name: name,
           link: link
@@ -63,31 +54,27 @@ class Api {
 
   handleLike(id, isLiked) {
     if (!isLiked) {
-      return fetch(`${this._baseUrl}${this._cohort}/cards/${id}/likes`, {
+      return fetch(`${this._baseUrl}/cards/${id}/likes`, {
           method: 'DELETE',
-          headers: {
-            authorization: this._token
-          }
+          credentials: 'include'
         })
         .then(res => this._checkResponse(res))
     } else {
-      return fetch(`${this._baseUrl}${this._cohort}/cards/${id}/likes`, {
+      return fetch(`${this._baseUrl}/cards/${id}/likes`, {
           method: 'PUT',
-          headers: {
-            authorization: this._token
-          }
+          credentials: 'include'
         })
         .then(res => this._checkResponse(res))
     }
   }
 
   sendData(name, about) {
-    return fetch(`${this._baseUrl}${this._cohort}/users/me`, {
+    return fetch(`${this._baseUrl}/users/me`, {
         method: 'PATCH',
         headers: {
-          authorization: this._token,
           'Content-Type': this._type
         },
+        credentials: 'include',
         body: JSON.stringify({
           name: name,
           about: about
@@ -97,12 +84,12 @@ class Api {
   }
 
   selectionAvatar(link) {
-    return fetch(`${this._baseUrl}${this._cohort}/users/me/avatar`, {
+    return fetch(`${this._baseUrl}/users/me/avatar`, {
         method: 'PATCH',
         headers: {
-          authorization: this._token,
           'Content-Type': this._type
         },
+        credentials: 'include',
         body: JSON.stringify({
           avatar: link
         })
@@ -111,7 +98,7 @@ class Api {
   }
 
   access(email, password, url) {
-    return fetch(`${this._authUrl}${url}`, {
+    return fetch(`${this._baseUrl}${url}`, {
         method: 'POST',
         headers: {
           "Content-Type": this._type,
@@ -123,18 +110,6 @@ class Api {
       })
       .then(res => this._checkResponse(res))
     }
-
-    getCheckToken() {
-      return fetch(`${this._authUrl}/users/me`, {
-        method: 'GET',
-        headers: {
-          "Content-Type": "application/json",
-          "Authorization" : `Bearer ${localStorage.getItem('jwt')}`
-        }
-      })
-      .then(res => this._checkResponse(res))
-    }
-
 }
 
 export default new Api(cs.configApi);

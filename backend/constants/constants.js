@@ -1,5 +1,12 @@
 module.exports = {
-  OK: 200,
-  OK_ADD: 201,
-  regExp: /^https?:\/\/(?:www.)?[-a-zA-Z0-9:%._+~#=]{1,256}\.[a-zA-Z0-9()]{1,6}\b(?:[-a-zA-Z0-9()@:%_+.~#?&/=]*)$/,
+  resStatus: {
+    OK: 200,
+    OK_ADD: 201,
+  },
+  regExp: {
+    link: /^https?:\/\/(?:www.)?[-a-zA-Z0-9:%._+~#=]{1,256}\.[a-zA-Z0-9()]{1,6}\b(?:[-a-zA-Z0-9()@:%_+.~#?&/=]*)$/,
+  },
+  corsUrl: [
+    'tvoyomesto.nomorepartiesxyz.ru',
+  ],
 };
