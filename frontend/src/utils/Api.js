@@ -110,6 +110,13 @@ class Api {
       })
       .then(res => this._checkResponse(res))
     }
+
+    logOut() {
+      return fetch(`${this._baseUrl}/users/out`, {
+        credentials: 'include'
+        })
+        .then(res => this._checkResponse(res))
+    }
 }
 
 export default new Api(cs.configApi);

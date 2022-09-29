@@ -33,7 +33,7 @@ export default function Register({onRegister}) {
     return (
       <div className="access-form">
         <h2 className="access-form__title">Регистрация</h2>
-        <form className='form' onSubmit={handleSubmit} name='sign-up' noValidate>
+        <form className='form' onSubmit={handleSubmit} name='signup' noValidate>
 
           <input className="form__access-input"
             onChange={handleChangeEmail}
@@ -55,7 +55,7 @@ export default function Register({onRegister}) {
         </form>
         <p className="form__text">
           Уже зарегистрированы?
-          <Link className="form__link" to='/sign-in'> Войти</Link>
+          <Link className="form__link" to='/signin'> Войти</Link>
         </p>
       </div>
     )

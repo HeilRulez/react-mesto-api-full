@@ -129,3 +129,14 @@ module.exports.login = async (req, res, next) => {
     }
   }
 };
+
+module.exports.outUsers = async (req, res, next) => {
+  try {
+    res.status(resStatus.OK).cookie('jwt', '', {
+      maxAge: -1,
+      httpOnly: true,
+    });
+  } catch (err) {
+    next(err);
+  }
+};

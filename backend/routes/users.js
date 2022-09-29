@@ -2,11 +2,12 @@ const routes = require('express').Router();
 const { celebrate, Joi } = require('celebrate');
 const { regExp } = require('../constants/constants');
 const {
-  getUsers, getUser, getTargetUser, updateProfile, updateAvatar,
+  getUsers, getUser, getTargetUser, updateProfile, updateAvatar, outUsers,
 } = require('../controllers/users');
 
 routes.get('/', getUsers);
 routes.get('/me', getUser);
+routes.get('/out', outUsers);
 routes.get('/:userId', celebrate({
   params: Joi.object().keys({
     userId: Joi.string().alphanum().hex().length(24),

@@ -32,7 +32,7 @@ export default function Login({onLogin}) {
     return (
       <div className="access-form">
         <h2 className="access-form__title">Вход</h2>
-        <form className='form' onSubmit={handleSubmit} name='sign-in' noValidate>
+        <form className='form' onSubmit={handleSubmit} name='signin' noValidate>
           <input className="form__access-input"
             onChange={handleChangeEmail}
             value={email}

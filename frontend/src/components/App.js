@@ -177,11 +177,19 @@ export default function App() {
     });
   }
 
+  function handleOut() {
+    return api.logOut()
+    .then(() => {
+      setLoggedIn(false);
+    })
+    .catch(err => console.error(`Ошибка ${err} при выходе из аккаунта.`))
+  };
+
   return (
   <CurrentUserContext.Provider value={currentUser}>
     <DataUserContext.Provider value={dataUser}>
       <div className="page">
-        <Header loggedIn={loggedIn} setLoggedIn={setLoggedIn} />
+        <Header loggedIn={loggedIn} logOut={handleOut}/>
           <Switch>
             <Route path='/signin'>
               <Login onLogin={onLogin} />

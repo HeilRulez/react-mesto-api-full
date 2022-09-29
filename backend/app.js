@@ -1,11 +1,11 @@
 const express = require('express');
+const cors = require('cors');
 const mongoose = require('mongoose');
 const { celebrate, Joi, errors } = require('celebrate');
 const { reqLogger, errLogger } = require('./middlewares/logger');
 const routesUser = require('./routes/users');
 const routesCards = require('./routes/cards');
 const auth = require('./middlewares/auth');
-const cors = require('cors');
 const NotFoundError = require('./errors/NotFoundError');
 const { regExp, corsUrl } = require('./constants/constants');
 const {
