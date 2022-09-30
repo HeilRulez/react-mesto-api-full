@@ -1,3 +1,4 @@
+require('dotenv').config();
 const express = require('express');
 const cors = require('cors');
 const mongoose = require('mongoose');
@@ -26,6 +27,11 @@ app.use(cors({
 }));
 app.use(express.json());
 app.use(reqLogger);
+app.get('/crash-test', () => {
+  setTimeout(() => {
+    throw new Error('Сервер сейчас упадёт');
+  }, 0);
+});
 app.post('/signup', celebrate({
   body: Joi.object().keys({
     name: Joi.string().default('Жак-Ив Кусто').min(2).max(30),
