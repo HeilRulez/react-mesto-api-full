@@ -1,4 +1,5 @@
 export const configApi = {
-    baseUrl: 'https://api.tvoyomesto.nomorepartiesxyz.ru',
+    baseUrl: 'http://localhost:3000',
+    // baseUrl: 'https://api.tvoyomesto.nomorepartiesxyz.ru',
     type: 'application/json',
   }

@@ -103,6 +103,7 @@ class Api {
         headers: {
           "Content-Type": this._type,
         },
+        credentials: 'include',
         body: JSON.stringify({
           "password": password,
           "email": email

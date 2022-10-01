@@ -81,7 +81,6 @@ export default function App() {
   function getInfo() {
     api.getUserInfo()
     .then((dataUser) => {
-      console.log(dataUser);
       setLoggedIn(true);
       setCurrentUser(dataUser)
       })
@@ -180,9 +179,8 @@ export default function App() {
 
   function handleOut() {
     return api.logOut()
-    .then(() => {
-      setLoggedIn(false);
-    })
+    .then(() => setLoggedIn(false))
+    .then(() => history.push('/signin'))
     .catch(err => console.error(`Ошибка ${err} при выходе из аккаунта.`))
   };
 
