@@ -35,9 +35,9 @@ export default function App() {
   function onLogin(email, password) {
     return api.access(email, password, '/signin')
       .then(res => {
-        if(res.data._id) {
+        if(res._id) {
           setLoggedIn(true);
-          setDataUser(res.data);
+          setDataUser(res);
           getCards();
           getInfo();
         }
@@ -81,6 +81,7 @@ export default function App() {
   function getInfo() {
     api.getUserInfo()
     .then((dataUser) => {
+      console.log(dataUser);
       setLoggedIn(true);
       setCurrentUser(dataUser)
       })
