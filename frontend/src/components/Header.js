@@ -11,7 +11,6 @@ export default function Header ({loggedIn, logOut}) {
     logOut();
     history.push('/signin');
   }
-
     return (
       <header className="header">
         <div className="header__logo"></div>

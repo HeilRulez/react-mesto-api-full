@@ -131,11 +131,12 @@ module.exports.login = async (req, res, next) => {
   }
 };
 
-module.exports.outUsers = async (req, res, next) => {
+module.exports.outUsers = (req, res, next) => {
   try {
     res.status(resStatus.OK).cookie('jwt', '', {
       httpOnly: true,
-    });
+    })
+      .send();
   } catch (err) {
     next(err);
   }

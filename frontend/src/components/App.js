@@ -146,11 +146,7 @@ export default function App() {
     const isLiked = card.likes.some(item => item === currentUser._id);
     api.handleLike(card._id, !isLiked)
       .then(сard => {
-        console.log(card);
         setCards((state) => state.map((c) => {
-          console.log(state);
-          // console.log(c._id);
-          // console.log(card._id);
           return c._id === card._id ? сard : c}));
 
     })
@@ -184,8 +180,9 @@ export default function App() {
 
   function handleOut() {
     return api.logOut()
-    .then(() => setLoggedIn(false))
-    // .then(() => history.push('/signin'))
+    .then(() => {
+      setLoggedIn(false);
+    })
     .catch(err => console.error(`Ошибка ${err} при выходе из аккаунта.`))
   };
 
