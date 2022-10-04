@@ -17,6 +17,7 @@ import {CurrentUserContext, DataUserContext} from '../contexts/CurrentUserContex
 
 export default function App() {
 
+  const [loggedIn, setLoggedIn] = useState(false);
   const [isEditProfilePopupOpen, setProfilePopupOpen] = useState(false);
   const [isAddPlacePopupOpen, setPlacePopupOpen] = useState(false);
   const [isEditAvatarPopupOpen, setAvatarPopupOpen] = useState(false);
@@ -29,7 +30,6 @@ export default function App() {
   const [dataUser, setDataUser] = useState({});
   const [cards, setCards] = useState([]);
   const [cardItem, setCardItem] = useState({});
-  const [loggedIn, setLoggedIn] = useState(false);
   const history = useHistory();
 
   function onLogin(email, password) {
