@@ -136,7 +136,7 @@ module.exports.outUsers = (req, res, next) => {
     res.status(resStatus.OK).cookie('jwt', '', {
       httpOnly: true,
     })
-      .send();
+      .send({});
   } catch (err) {
     next(err);
   }
