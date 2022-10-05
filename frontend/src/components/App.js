@@ -82,6 +82,7 @@ export default function App() {
     api.getUserInfo()
     .then((dataUser) => {
       setLoggedIn(true);
+      setDataUser(dataUser);
       setCurrentUser(dataUser)
       })
       .catch(err => console.error(`Ошибка ${err} при получении данных профиля.`));
